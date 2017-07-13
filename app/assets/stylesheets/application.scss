@@ -1,3 +1,14 @@
 // "bootstrap-sprockets" must be imported before "bootstrap" and "bootstrap/variables"
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+.vertical-nav-items {
+  @extend .nav, .nav-pills, .nav-stacked;
+  font-size: xx-large;
+}
+
+.section {
+  margin-top: 10px;
+  border-style: solid;
+  height: 500px;
+}

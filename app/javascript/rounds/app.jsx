@@ -1,10 +1,12 @@
 import React from 'react'
+import RoundDetails from 'rounds/details'
 
 export default class RoundsApp extends React.Component {
   constructor(props) {
-    super();
+    super(props);
     this.state = {
-      rounds: []
+      rounds: [],
+      active: null
     };
   }
 
@@ -17,14 +19,35 @@ export default class RoundsApp extends React.Component {
   }
 
   render() {
-    const rounds = this.state.rounds.map((round) => {
-      return <h1 key={round.id}>{round.name}</h1>
-    });
-    return <div>{rounds}</div>;
+    const rounds = this.roundList();
+    return (
+      <div>
+        <ul className="vertical-nav-items col-sm-3">{rounds}</ul>
+        <RoundDetails className="section col-sm-9" round={this.state.active} />
+      </div>
+    );
+  }
+  
+  handleClick(round) {
+    this.setState({
+      active: round
+    })
   }
 
+  roundList() {
+    const rounds = this.state.rounds.map((round) => {
+      return (
+        <li className={round === this.state.active ? 'active' : null} key={round.id}>
+          <a onClick={() => this.handleClick(round)}>{round.name}</a>
+        </li>
+      )
+    });
+    return rounds;
+  }
+
+
   getUrl(url) {
-    return new Promise(function(resolve, reject) {
+    return new Promise((resolve, reject) => {
       let req = new XMLHttpRequest();
       req.open('GET', url);
       req.setRequestHeader('Accept', 'application/json');
