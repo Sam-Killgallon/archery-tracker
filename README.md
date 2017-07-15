@@ -1,24 +1,20 @@
-# README
+# Track and view Archery Rounds
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Setup
+------
 
-Things you may want to cover:
+    bundle install
+    yarn install
+    bundle exec rails db:setup
 
-* Ruby version
 
-* System dependencies
+Tests
+-----
 
-* Configuration
+Tests are set up to run using rspec and headless chrome.  
+* Ensure at least chrome 59 is installed.  
+* Install [chromedriver](https://sites.google.com/a/chromium.org/chromedriver/).  
 
-* Database creation
+Run tests with:  
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+    bundle exec rspec

@@ -37,8 +37,6 @@ RSpec.feature 'Round selector', js: true do
       expect(page).to have_content('Distances: 80, 60, 50')
       expect(page).to have_content('Total arrows: 108')
       expect(page).to have_content('Max score: 1080')
-
-
     end
   end
 end
