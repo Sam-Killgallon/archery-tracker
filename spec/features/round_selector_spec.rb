@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.feature 'Round selector', js: true do
   describe 'round list' do
     it 'displays a list of all rounds and shows details when one is clicked' do
-      Round.create!(name: 'Portsmouth', indoor: true, metric: true).tap do |round|
+      Round.create!(name: 'Portsmouth', indoor: true, metric: false).tap do |round|
         RoundDistance.create!(distance: 20, ends: 20, arrows_per_end: 3, round: round)
       end
 

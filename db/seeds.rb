@@ -8,7 +8,7 @@
 
 Round.destroy_all
 
-Round.create!(name: 'Portsmouth', indoor: true, metric: true).tap do |round|
+Round.create!(name: 'Portsmouth', indoor: true, metric: false).tap do |round|
   RoundDistance.create!(distance: 20, ends: 20, arrows_per_end: 3, round: round)
 end
 
