@@ -38,7 +38,7 @@ export default class RoundsApp extends React.Component {
     const rounds = this.state.rounds.map((round) => {
       return (
         <li className={round === this.state.active ? 'active' : null} key={round.id}>
-          <a onClick={() => this.handleClick(round)}>{round.name}</a>
+          <a href="#" onClick={() => this.handleClick(round)}>{round.name}</a>
         </li>
       )
     });

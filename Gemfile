@@ -24,6 +24,10 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'pry-rails'
   gem 'rspec-rails'
+  gem 'rails-controller-testing'
+  gem 'capybara'
+  gem 'selenium-webdriver'
+  gem 'database_cleaner'
 end
 
 group :development do
