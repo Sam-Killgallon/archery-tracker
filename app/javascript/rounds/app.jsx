@@ -1,5 +1,5 @@
-import React from 'react'
-import RoundDetails from 'rounds/details'
+import React from 'react';
+import RoundDetails from 'rounds/details';
 
 export default class RoundsApp extends React.Component {
   constructor(props) {
@@ -9,7 +9,6 @@ export default class RoundsApp extends React.Component {
       active: null
     };
   }
-
   componentDidMount() {
     this.getUrl('/rounds').then((rounds) => {
       this.setState({
@@ -31,7 +30,7 @@ export default class RoundsApp extends React.Component {
   handleClick(round) {
     this.setState({
       active: round
-    })
+    });
   }
 
   roundList() {

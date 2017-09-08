@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170713212114) do
+ActiveRecord::Schema.define(version: 20170801215156) do
 
   create_table "round_distances", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "distance"
@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 20170713212114) do
     t.bigint "round_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "target_size"
     t.index ["round_id"], name: "index_round_distances_on_round_id"
   end
 

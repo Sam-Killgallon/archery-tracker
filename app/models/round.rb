@@ -28,7 +28,7 @@ class Round < ApplicationRecord
 
   def as_json(options = {})
     super.merge(
-      distances: distances,
+      round_distances: round_distances.as_json,
       total_arrows: total_arrows,
       max_score: max_score
     )

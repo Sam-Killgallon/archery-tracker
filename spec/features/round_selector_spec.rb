@@ -31,12 +31,31 @@ RSpec.feature 'Round selector', js: true do
       expect(page).to have_content('FITA 1440')
       expect(page).to have_content('Albion')
 
+      click_on 'FITA 18'
+
+      # It should have an overview of the selected round
+      expect(page).to have_css('h3', text: 'FITA 18 - Metric - Indoor')
+      expect(page).to have_css('li', text: 'Distances: 18m')
+      expect(page).to have_css('li', text: 'Total arrows: 60')
+      expect(page).to have_css('li', text: 'Max score: 600')
+
+      # It should not have a table, as it only has one distance
+      expect(page).not_to have_css('.distances-table')
+
       click_on 'Albion'
 
-      expect(page).to have_content('Albion - Imperial - Outdoor')
-      expect(page).to have_content('Distances: 80, 60, 50')
-      expect(page).to have_content('Total arrows: 108')
-      expect(page).to have_content('Max score: 1080')
+      # It should have an overview of the selected round
+      expect(page).to have_css('h3', text: 'Albion - Imperial - Outdoor')
+      expect(page).to have_css('li', text: 'Distances: 80y, 60y, 50y')
+      expect(page).to have_css('li', text: 'Total arrows: 108')
+      expect(page).to have_css('li', text: 'Max score: 1080')
+
+      # It should have a table displaying detailed info about each distance
+      within('.distances-table') do
+        expect(page).to have_css('th', text: '80')
+        expect(page).to have_css('th', text: '60')
+        expect(page).to have_css('th', text: '50')
+      end
     end
   end
 end
