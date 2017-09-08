@@ -16,9 +16,9 @@ RSpec.describe Round do
   let(:round) { described_class.new }
   let(:round_distances) do
     [
-      instance_double(RoundDistance, distance: 30, total_arrows: 12),
-      instance_double(RoundDistance, distance: 50, total_arrows: 36),
-      instance_double(RoundDistance, distance: 70, total_arrows: 18)
+      instance_double(RoundDistance, distance: 30, total_arrows: 12, as_json: {}),
+      instance_double(RoundDistance, distance: 50, total_arrows: 36, as_json: {}),
+      instance_double(RoundDistance, distance: 70, total_arrows: 18, as_json: {})
     ]
   end
 
@@ -46,7 +46,7 @@ RSpec.describe Round do
 
   describe '#as_json' do
     subject { round.as_json }
-    it { is_expected.to include(distances: [30, 50, 70]) }
+    it { is_expected.to include(round_distances: round_distances.as_json) }
     it { is_expected.to include(total_arrows: 66) }
     it { is_expected.to include(max_score: 660) }
   end

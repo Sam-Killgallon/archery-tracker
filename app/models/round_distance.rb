@@ -9,14 +9,17 @@
 #  round_id       :integer
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
+#  target_size    :integer
 #
 
 class RoundDistance < ApplicationRecord
   belongs_to :round
 
-  # FIXME: Should contain target size as well
-
   def total_arrows
     arrows_per_end * ends
+  end
+
+  def as_json(options = {})
+    super.merge(total_arrows: total_arrows)
   end
 end
