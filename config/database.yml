@@ -13,9 +13,9 @@ default: &default
   adapter: mysql2
   encoding: utf8
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  username: root
-  password: root
-  socket: /tmp/mysql.sock
+  username: <%= ENV.fetch('ARCHERY_DATABASE_USERNAME') %>
+  password: <%= ENV.fetch('ARCHERY_DATABASE_USERNAME') %>
+  socket: <%= ENV.fetch('ARCHERY_DATABASE_SOCKET') %>
 
 development:
   <<: *default
@@ -50,5 +50,3 @@ test:
 production:
   <<: *default
   database: archery_production
-  username: archery
-  password: <%= ENV['ARCHERY_DATABASE_PASSWORD'] %>

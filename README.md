@@ -2,6 +2,7 @@
 
 Setup
 ------
+Copy `.env` to `.env.<environment>` and fill in details
 
     bundle install
     yarn install
