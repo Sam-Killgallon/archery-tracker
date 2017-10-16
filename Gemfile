@@ -27,7 +27,9 @@ group :development, :test do
 end
 
 group :development do
-  # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
+  gem 'capistrano'
+  gem 'capistrano-rails'
+  gem 'capistrano3-puma'
   gem 'web-console'
   gem 'listen'
   gem 'annotate'
