@@ -52,3 +52,4 @@ production:
   database: archery_production
   username: archery
   password: <%= ENV['ARCHERY_DATABASE_PASSWORD'] %>
+  socket: <%= ENV['MYSQL_SOCKET'] %>
