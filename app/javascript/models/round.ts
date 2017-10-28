@@ -17,6 +17,6 @@ export default class Round {
       return `${roundDistance.distance}${unit}`;
     });
 
-    return distances.join(', ')
+    return distances.join(', ');
   }
 }

@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import RoundDetails from 'rounds/details';
 
 export default class RoundsApp extends React.Component {
