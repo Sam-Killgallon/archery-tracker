@@ -1,7 +1,12 @@
 import * as React from 'react';
+import RoundDistance from 'models/round_distance';
 
-export default class RoundDistanceTable extends React.Component {
-  render() {
+interface Props {
+  roundDistances: RoundDistance[];
+}
+
+export default class RoundDistanceTable extends React.Component<Props> {
+  render(): JSX.Element {
     const roundDistances = this.props.roundDistances;
 
     if (roundDistances.length <= 1) { return <div></div> }

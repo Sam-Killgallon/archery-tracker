@@ -1,9 +1,14 @@
 import * as React from 'react';
-import Round from 'models/round'
+import Round from 'models/round';
 import RoundDistanceTable from 'rounds/distance_table';
 
-export default class RoundDetails extends React.Component {
-  render() {
+interface Props {
+  round: Round;
+  className: string;
+}
+
+export default class RoundDetails extends React.Component<Props> {
+  render(): JSX.Element {
     if (!this.props.round) { return this.noRoundSelected() }
     const round = new Round(this.props.round);
 
@@ -23,7 +28,7 @@ export default class RoundDetails extends React.Component {
     );
   }
 
-  noRoundSelected() {
+  noRoundSelected(): JSX.Element {
     return (
       <div className={this.props.className}>
         <h3 className="text-center">Please select a round</h3>
