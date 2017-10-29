@@ -16,9 +16,10 @@ export default class RoundsApp extends React.Component<{}, State> {
     };
   }
   componentDidMount(): void {
-    this.getUrl('/rounds').then((rounds: object[]) => {
+    this.getUrl('/rounds').then((rounds: Round[]) => {
+      const sorted_rounds = rounds.sort((a, b) => a.name.localeCompare(b.name));
       this.setState({
-        rounds: rounds.map(round => new Round(round))
+        rounds: sorted_rounds.map(round => new Round(round))
       });
     });
   }
