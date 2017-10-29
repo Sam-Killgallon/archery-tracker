@@ -1,58 +1,40 @@
 import * as React from 'react';
 import Round from 'models/round';
-import RoundDetails from 'rounds/details';
+import RoundList from 'rounds/list';
 
 interface State {
   rounds: Round[];
-  active: Round;
 }
 
 export default class RoundsApp extends React.Component<{}, State> {
-  constructor(props: object) {
+  constructor(props: {}) {
     super(props);
+
     this.state = {
-      rounds: [],
-      active: null
-    };
-  }
-  componentDidMount(): void {
-    this.getUrl('/rounds').then((rounds: Round[]) => {
-      const sorted_rounds = rounds.sort((a, b) => a.name.localeCompare(b.name));
-      this.setState({
-        rounds: sorted_rounds.map(round => new Round(round))
-      });
-    });
+      rounds: []
+    }
   }
 
-  render(): JSX.Element {
-    const rounds = this.roundList();
+  render() {
     return (
       <div>
-        <ul className="vertical-nav-items col-sm-3">{rounds}</ul>
-        <RoundDetails className="section col-sm-9" round={this.state.active} />
+        <RoundList rounds={this.state.rounds} />
       </div>
     );
   }
-  
-  handleClick(round: Round): void {
+
+  async componentDidMount() {
+    const rounds = await this.getUrl('/rounds');
+    let round_objs: Round[] = rounds.map(round=> new Round(round));
+    round_objs.sort((a, b) => a.name.localeCompare(b.name));
+
     this.setState({
-      active: round
+      rounds: round_objs
     });
   }
 
-  roundList(): JSX.Element[] {
-    const rounds = this.state.rounds.map((round) => {
-      return (
-        <li className={round === this.state.active ? 'active' : null} key={round.id}>
-          <a href="#" onClick={() => this.handleClick(round)}>{round.name}</a>
-        </li>
-      )
-    });
-    return rounds;
-  }
-
-  getUrl(url): Promise<object> {
-    return new Promise((resolve, reject) => {
+  async getUrl(url): Promise<object[]> {
+    return new Promise<object[]>((resolve, reject) => {
       let req = new XMLHttpRequest();
       req.open('GET', url);
       req.setRequestHeader('Accept', 'application/json');
