@@ -1,9 +1,11 @@
 import * as React from 'react';
 import Round from 'models/round';
 import RoundList from 'rounds/list';
+import SearchBar from 'search_bar';
 
 interface State {
   rounds: Round[];
+  filteredRounds: Round[];
 }
 
 export default class RoundsApp extends React.Component<{}, State> {
@@ -11,16 +13,33 @@ export default class RoundsApp extends React.Component<{}, State> {
     super(props);
 
     this.state = {
-      rounds: []
+      rounds: [],
+      filteredRounds: []
     }
   }
 
   render() {
     return (
-      <div>
-        <RoundList rounds={this.state.rounds} />
+      <div className="container">
+        <div className="search-bar">
+          <SearchBar onChange={(ev) => this.filterRounds(ev)} />
+        </div>
+        <RoundList rounds={this.state.filteredRounds} />
       </div>
     );
+  }
+
+  filterRounds(ev: React.ChangeEvent<HTMLInputElement>): void {
+    const searchTerm = ev.target.value.toLowerCase();
+    const rounds = this.state.rounds;
+
+    const filteredRounds = rounds.filter(round => {
+      return round.name.toLowerCase().includes(searchTerm)
+    })
+
+    this.setState({
+      filteredRounds: filteredRounds
+    })
   }
 
   async componentDidMount() {
@@ -29,7 +48,8 @@ export default class RoundsApp extends React.Component<{}, State> {
     round_objs.sort((a, b) => a.name.localeCompare(b.name));
 
     this.setState({
-      rounds: round_objs
+      rounds: round_objs,
+      filteredRounds: round_objs
     });
   }
 
