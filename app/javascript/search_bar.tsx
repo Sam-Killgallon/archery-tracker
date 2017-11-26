@@ -20,32 +20,34 @@ export default class SearchBar extends React.Component<Props, {}> {
           </div>
         </div>
 
-        <div className="checkbox">
-          <label>
-            <input type="checkbox" id="indoor-filter" value="" onChange={this.props.onChange} defaultChecked/>
-            Indoor
-          </label>
-        </div>
+        <div className="row col-xs-6">
+          <div className="col-xs-3 checkbox">
+            <label>
+              <input type="checkbox" id="indoor-filter" value="" onChange={this.props.onChange} defaultChecked/>
+              Indoor
+            </label>
+          </div>
 
-        <div className="checkbox">
-          <label>
-            <input type="checkbox" id="outdoor-filter" value="" onChange={this.props.onChange} defaultChecked/>
-            Outdoor
-          </label>
-        </div>
+          <div className="col-xs-3 checkbox">
+            <label>
+              <input type="checkbox" id="outdoor-filter" value="" onChange={this.props.onChange} defaultChecked/>
+              Outdoor
+            </label>
+          </div>
 
-        <div className="checkbox">
-          <label>
-            <input type="checkbox" id="metric-filter" value="" onChange={this.props.onChange} defaultChecked/>
-            Metric
-          </label>
-        </div>
+          <div className="col-xs-3 checkbox">
+            <label>
+              <input type="checkbox" id="metric-filter" value="" onChange={this.props.onChange} defaultChecked/>
+              Metric
+            </label>
+          </div>
 
-        <div className="checkbox">
-          <label>
-            <input type="checkbox" id="imperial-filter" value="" onChange={this.props.onChange} defaultChecked/>
-            Imperial
-          </label>
+          <div className="col-xs-3 checkbox">
+            <label>
+              <input type="checkbox" id="imperial-filter" value="" onChange={this.props.onChange} defaultChecked/>
+              Imperial
+            </label>
+          </div>
         </div>
       </form>
     )

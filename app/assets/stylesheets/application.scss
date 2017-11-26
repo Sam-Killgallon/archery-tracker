@@ -10,3 +10,8 @@
 .search-bar {
   margin: 10px;
 }
+
+// Override bootstrap form style to line up checkboxes
+.radio + .radio, .checkbox + .checkbox {
+  margin-top: 10px;
+}

@@ -35,10 +35,12 @@ export default class RoundsApp extends React.Component<{}, State> {
   render() {
     return (
       <div className="container">
-        <div className="search-bar">
+        <div className="row search-bar">
           <SearchBar onChange={(ev) => this.filterRounds(ev)} />
         </div>
-        <RoundList rounds={this.state.filteredRounds} />
+        <div className="row">
+          <RoundList rounds={this.state.filteredRounds} />
+        </div>
       </div>
     );
   }
