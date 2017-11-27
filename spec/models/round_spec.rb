@@ -36,7 +36,7 @@ RSpec.describe Round do
 
   describe '#max_score' do
     context 'with a metric round' do
-      before { round.metric = true }
+      let(:round) { described_class.new(round_distances: round_distances, metric: true) }
 
       it 'uses 10 zone scoring' do
         expect(round.max_score).to eql(330)
@@ -44,7 +44,7 @@ RSpec.describe Round do
     end
 
     context 'with an imperial round' do
-      before { round.metric = false }
+      let(:round) { described_class.new(round_distances: round_distances, metric: false) }
 
       it 'uses 5 zone scoring' do
         expect(round.max_score).to eql(297)
