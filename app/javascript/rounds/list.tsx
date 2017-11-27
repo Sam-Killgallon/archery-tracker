@@ -29,7 +29,10 @@ export default class RoundList extends React.Component<Props, State> {
     );
   }
   
-  handleClick(round: Round): void {
+  handleClick(round: Round, event: React.MouseEvent<HTMLAnchorElement>): void {
+    // prevent page from scrolling / reloading
+    event.preventDefault();
+
     this.setState({
       active: round
     });
@@ -39,7 +42,7 @@ export default class RoundList extends React.Component<Props, State> {
     const rounds = this.props.rounds.map((round) => {
       return (
         <li className={round === this.state.active ? 'active' : null} key={round.id}>
-          <a href="#" onClick={() => this.handleClick(round)}>{round.name}</a>
+          <a onClick={(event) => this.handleClick(round, event)}>{round.name}</a>
         </li>
       )
     });
