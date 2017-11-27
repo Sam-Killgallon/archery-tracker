@@ -22,8 +22,7 @@ class Round < ApplicationRecord
   end
 
   def max_score
-    # FIXME: Not valid for all rounds
-    total_arrows * 10
+    metric ? total_arrows * 10 : total_arrows * 9
   end
 
   def as_json(options = {})

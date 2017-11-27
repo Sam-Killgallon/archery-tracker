@@ -48,7 +48,7 @@ RSpec.feature 'Round selector', js: true do
       expect(page).to have_css('h3', text: 'Albion - Imperial - Outdoor')
       expect(page).to have_css('li', text: 'Distances: 80y, 60y, 50y')
       expect(page).to have_css('li', text: 'Total arrows: 108')
-      expect(page).to have_css('li', text: 'Max score: 1080')
+      expect(page).to have_css('li', text: 'Max score: 972')
 
       # It should have a table displaying detailed info about each distance
       within('.distances-table') do
