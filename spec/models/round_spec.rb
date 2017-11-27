@@ -13,17 +13,13 @@
 require 'rails_helper'
 
 RSpec.describe Round do
-  let(:round) { described_class.new }
+  let(:round) { described_class.new(round_distances: round_distances) }
   let(:round_distances) do
     [
-      instance_double(RoundDistance, distance: 30, total_arrows: 12, as_json: {}),
-      instance_double(RoundDistance, distance: 50, total_arrows: 36, as_json: {}),
-      instance_double(RoundDistance, distance: 70, total_arrows: 18, as_json: {})
+      RoundDistance.new(distance: 30, arrows_per_end: 3, ends: 1),
+      RoundDistance.new(distance: 50, arrows_per_end: 6, ends: 2),
+      RoundDistance.new(distance: 70, arrows_per_end: 6, ends: 3)
     ]
-  end
-
-  before(:each) do
-    allow(round).to receive(:round_distances).and_return(round_distances)
   end
 
   describe '#distances' do
@@ -34,20 +30,28 @@ RSpec.describe Round do
 
   describe '#total_arrows' do
     it 'returns the total number of arrows across all rounds' do
-      expect(round.total_arrows).to eql(66)
+      expect(round.total_arrows).to eql(33)
     end
   end
 
   describe '#max_score' do
-    it 'returns the highest possible score for the round' do
-      expect(round.max_score).to eql(660)
+    context 'with a metric round' do
+      it 'uses 10 zone scoring' do
+        expect(round.max_score).to eql(330)
+      end
+    end
+
+    context 'with an imperial round' do
+      it 'uses 5 zone scoring' do
+        expect(round.max_score).to eql(330)
+      end
     end
   end
 
   describe '#as_json' do
     subject { round.as_json }
     it { is_expected.to include(round_distances: round_distances.as_json) }
-    it { is_expected.to include(total_arrows: 66) }
-    it { is_expected.to include(max_score: 660) }
+    it { is_expected.to include(total_arrows: 33) }
+    it { is_expected.to include(max_score: 330) }
   end
 end
