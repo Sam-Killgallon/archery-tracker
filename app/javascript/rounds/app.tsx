@@ -16,7 +16,7 @@ interface State {
 }
 
 export default class RoundsApp extends React.Component<{}, State> {
-  constructor(props: {}) {
+  constructor(props) {
     super(props);
 
     this.state = {
@@ -55,7 +55,7 @@ export default class RoundsApp extends React.Component<{}, State> {
     this.setState({searchParams: obj}, this.updateList)
   }
 
-  updateList() {
+  updateList(): void {
     const searchParams = this.state.searchParams;
     const searchTerm = searchParams['search-term'].toLowerCase();
     const rounds = this.state.rounds;
