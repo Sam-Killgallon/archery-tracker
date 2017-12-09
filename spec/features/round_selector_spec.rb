@@ -24,14 +24,14 @@ RSpec.feature 'Round selector', js: true do
         RoundDistance.create!(distance: 50, ends: 6, arrows_per_end: 6, round: round)
       end
 
-      visit root_path 
+      visit root_path
       # Should have a list with all the rounds
       expect(page).to have_content('Portsmouth')
       expect(page).to have_content('FITA 18')
       expect(page).to have_content('FITA 1440')
       expect(page).to have_content('Albion')
 
-      click_on 'FITA 18'
+      find('a', text: 'FITA 18').click
 
       # It should have an overview of the selected round
       expect(page).to have_css('h3', text: 'FITA 18 - Metric - Indoor')
@@ -42,7 +42,7 @@ RSpec.feature 'Round selector', js: true do
       # It should not have a table, as it only has one distance
       expect(page).not_to have_css('.distances-table')
 
-      click_on 'Albion'
+      find('a', text: 'Albion').click
 
       # It should have an overview of the selected round
       expect(page).to have_css('h3', text: 'Albion - Imperial - Outdoor')
