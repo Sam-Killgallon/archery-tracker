@@ -58,29 +58,11 @@ export default class RoundsApp extends React.Component<{}, State> {
 
   updateList(): void {
     const searchParams = this.state.searchParams;
-    const searchTerm = searchParams['search-term'].toLowerCase();
     const rounds = this.state.rounds;
-
-    let filteredRounds = rounds.filter(round => {
-      return round.name.toLowerCase().includes(searchTerm)
-    })
-
-    filteredRounds = filteredRounds.filter(round => {
-      return (
-        round.indoor && searchParams['indoor-filter'] ||
-        !round.indoor && searchParams['outdoor-filter']
-      );
-    })
-
-    filteredRounds = filteredRounds.filter(round => {
-      return (
-        round.metric && searchParams['metric-filter'] ||
-        !round.metric && searchParams['imperial-filter']
-      );
-    })
+    const service = new RoundService();
 
     this.setState({
-      filteredRounds: filteredRounds
+      filteredRounds: service.filterRounds(rounds, searchParams)
     })
   }
 

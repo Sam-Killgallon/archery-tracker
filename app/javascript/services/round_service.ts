@@ -1,10 +1,34 @@
 import Round from 'models/round';
 
 export default class RoundService {
-  async getRoundList() {
+  async getRoundList(): Promise<Round[]> {
     const rounds = await this.getUrl('/rounds');
     let round_objs: Round[] = rounds.map(round=> new Round(round));
     return round_objs.sort((a, b) => a.name.localeCompare(b.name));
+  }
+
+  filterRounds(rounds: Round[], searchParams: object): Round[] {
+    const searchTerm = searchParams['search-term'].toLowerCase();
+
+    let filteredRounds = rounds.filter(round => {
+      return round.name.toLowerCase().includes(searchTerm)
+    })
+
+    filteredRounds = filteredRounds.filter(round => {
+      return (
+        round.indoor && searchParams['indoor-filter'] ||
+        !round.indoor && searchParams['outdoor-filter']
+      );
+    })
+
+    filteredRounds = filteredRounds.filter(round => {
+      return (
+        round.metric && searchParams['metric-filter'] ||
+        !round.metric && searchParams['imperial-filter']
+      );
+    })
+
+    return filteredRounds;
   }
 
   private async getUrl(url: string): Promise<object[]> {
