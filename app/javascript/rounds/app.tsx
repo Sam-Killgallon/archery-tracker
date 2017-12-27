@@ -10,6 +10,7 @@ interface Props {
 interface State {
   rounds: Round[];
   filteredRounds: Round[];
+  activeRound: Round | null;
   searchParams: {
     'search-term': string,
     'metric-filter': boolean,
@@ -26,6 +27,7 @@ export default class RoundsApp extends React.Component<Props, State> {
     this.state = {
       rounds: [],
       filteredRounds: [],
+      activeRound: null,
       searchParams: {
         'search-term': '',
         'metric-filter': true,

@@ -7,7 +7,7 @@ interface Props {
 }
 
 interface State {
-  active: Round;
+  active: Round | null;
 }
 
 export default class RoundList extends React.Component<Props, State> {

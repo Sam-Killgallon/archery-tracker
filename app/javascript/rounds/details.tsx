@@ -3,7 +3,7 @@ import Round from 'models/round';
 import RoundDistanceTable from 'rounds/distance_table';
 
 interface Props {
-  round: Round;
+  round: Round | null;
   className: string;
 }
 
