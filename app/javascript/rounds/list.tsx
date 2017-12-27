@@ -23,16 +23,13 @@ export default class RoundList extends React.Component<Props, State> {
     const rounds = this.roundList();
     return (
       <div>
-        <ul className="vertical-nav-items col-sm-3">{rounds}</ul>
+        <ul className="list-group col-sm-3">{rounds}</ul>
         <RoundDetails className="section col-sm-9" round={this.state.active} />
       </div>
     );
   }
-  
-  handleClick(round: Round, event: React.MouseEvent<HTMLAnchorElement>): void {
-    // prevent page from scrolling / reloading
-    event.preventDefault();
 
+  handleClick(round: Round): void {
     this.setState({
       active: round
     });
@@ -40,9 +37,14 @@ export default class RoundList extends React.Component<Props, State> {
 
   roundList(): JSX.Element[] {
     const rounds = this.props.rounds.map((round) => {
+      let classes = "";
+      classes += 'list-group-item';
+      if (round === this.state.active) {
+        classes += ' active';
+      }
       return (
-        <li className={round === this.state.active ? 'active' : null} key={round.id}>
-          <a onClick={(event) => this.handleClick(round, event)}>{round.name}</a>
+        <li className={classes} key={round.id} onClick={(_event) => this.handleClick(round)}>
+          {round.name}
         </li>
       )
     });

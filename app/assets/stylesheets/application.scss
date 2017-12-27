@@ -2,9 +2,16 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
-.vertical-nav-items {
-  @extend .nav, .nav-pills, .nav-stacked;
+$clickable-text-color: #337ab7;
+$clickable-text-hover-color: #eeeeee;
+
+.list-group-item {
   font-size: xx-large;
+  border: none;
+  color: $clickable-text-color;
+  &:hover {
+    background-color: $clickable-text-hover-color
+  }
 }
 
 .search-bar {

@@ -31,7 +31,7 @@ RSpec.feature 'Round selector', js: true do
       expect(page).to have_content('FITA 1440')
       expect(page).to have_content('Albion')
 
-      find('a', text: 'FITA 18').click
+      find('li', text: 'FITA 18').click
 
       # It should have an overview of the selected round
       expect(page).to have_css('h3', text: 'FITA 18 - Metric - Indoor')
@@ -39,7 +39,7 @@ RSpec.feature 'Round selector', js: true do
       expect(page).to have_css('li', text: 'Total arrows: 60')
       expect(page).to have_css('li', text: 'Max score: 600')
 
-      find('a', text: 'Albion').click
+      find('li', text: 'Albion').click
 
       # It should have an overview of the selected round
       expect(page).to have_css('h3', text: 'Albion - Imperial - Outdoor')
