@@ -23,8 +23,8 @@ export default class RoundList extends React.Component<Props, State> {
     const rounds = this.roundList();
     return (
       <div>
-        <ul className="list-group col-sm-3">{rounds}</ul>
-        <RoundDetails className="section col-sm-9" round={this.state.active} />
+        <ul className="list-group col-sm-4">{rounds}</ul>
+        <RoundDetails className="section col-sm-8" round={this.state.active} />
       </div>
     );
   }

@@ -16,10 +16,10 @@ export default class RoundDistanceTable extends React.Component<Props, State> {
     const rows = roundDistances.map(roundDistance => {
       return (
         <tr key={roundDistance.id}>
-          <th>{roundDistance.distance}</th>
-          <td>{roundDistance.arrows_per_end}</td>
-          <td>{roundDistance.ends}</td>
-          <td>{roundDistance.total_arrows}</td>
+          <th className="col-sm-3">{roundDistance.distance}</th>
+          <td className="col-sm-3">{roundDistance.arrows_per_end}</td>
+          <td className="col-sm-3">{roundDistance.ends}</td>
+          <td className="col-sm-3">{roundDistance.total_arrows}</td>
         </tr>
       )
     })
