@@ -13,7 +13,8 @@ interface State {
 export default class RoundDetails extends React.Component<Props, State> {
   render(): JSX.Element {
     if (!this.props.round) { return this.noRoundSelected() }
-    const round = new Round(this.props.round);
+    // const round = new Round(this.props.round);
+    const round = this.props.round;
 
     return (
       <div className={this.props.className}>
@@ -31,7 +32,7 @@ export default class RoundDetails extends React.Component<Props, State> {
     );
   }
 
-  noRoundSelected(): JSX.Element {
+  private noRoundSelected(): JSX.Element {
     return (
       <div className={this.props.className}>
         <h3 className="text-center">Please select a round</h3>

@@ -1,6 +1,7 @@
 import * as React from 'react';
 import Round from 'models/round';
 import RoundList from 'rounds/list';
+import RoundDetails from 'rounds/details';
 import SearchBar from 'search_bar';
 import RoundService from 'services/round_service';
 
@@ -40,18 +41,34 @@ export default class RoundsApp extends React.Component<Props, State> {
 
   render(): JSX.Element {
     return (
-      <div className="container">
+      <div>
         <div className="row search-bar">
           <SearchBar onChange={(ev) => this.filterRounds(ev)} />
         </div>
         <div className="row">
-          <RoundList rounds={this.state.filteredRounds} />
+          <RoundList
+            className="col-sm-4"
+            rounds={this.state.filteredRounds}
+            onClick={(round) => this.selectRound(round)}
+            active={this.state.activeRound}
+          />
+          <RoundDetails
+            className="section col-sm-8"
+            round={this.state.activeRound}
+          />
         </div>
       </div>
     );
   }
 
-  filterRounds(ev: React.ChangeEvent<HTMLInputElement>): void {
+  private selectRound(round: Round) {
+    console.log("Selected round %o", round);
+    this.setState({
+      activeRound: round
+    });
+  }
+
+  private filterRounds(ev: React.ChangeEvent<HTMLInputElement>): void {
     const obj = this.state.searchParams;
     if (Object.prototype.hasOwnProperty.call(ev.target, 'checked')) {
       obj[ev.target.id] = ev.target.checked;
@@ -61,7 +78,7 @@ export default class RoundsApp extends React.Component<Props, State> {
     this.setState({searchParams: obj}, this.updateList)
   }
 
-  updateList(): void {
+  private updateList(): void {
     const searchParams = this.state.searchParams;
     const rounds = this.state.rounds;
     const service = new RoundService();
