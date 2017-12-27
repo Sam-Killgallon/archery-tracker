@@ -5,7 +5,10 @@ interface Props {
   round: Round;
 }
 
-export default class RoundDistanceTable extends React.Component<Props> {
+interface State {
+}
+
+export default class RoundDistanceTable extends React.Component<Props, State> {
   render(): JSX.Element {
     const round = this.props.round;
     const roundDistances = round.round_distances;

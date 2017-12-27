@@ -4,13 +4,16 @@ interface Props {
   onChange: (ev: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-export default class SearchBar extends React.Component<Props, {}> {
+interface State {
+}
+
+export default class SearchBar extends React.Component<Props, State> {
   render() {
     return (
       <form onSubmit={(e) => e.preventDefault()}>
         <div className="row">
           <div className="col-xs-6">
-            <input 
+            <input
               id="search-term"
               type="text"
               className="form-control"

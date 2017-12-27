@@ -4,6 +4,9 @@ import RoundList from 'rounds/list';
 import SearchBar from 'search_bar';
 import RoundService from 'services/round_service';
 
+interface Props {
+}
+
 interface State {
   rounds: Round[];
   filteredRounds: Round[];
@@ -16,8 +19,8 @@ interface State {
   }
 }
 
-export default class RoundsApp extends React.Component<{}, State> {
-  constructor(props) {
+export default class RoundsApp extends React.Component<Props, State> {
+  constructor(props: Props) {
     super(props);
 
     this.state = {
@@ -33,7 +36,7 @@ export default class RoundsApp extends React.Component<{}, State> {
     }
   }
 
-  render() {
+  render(): JSX.Element {
     return (
       <div className="container">
         <div className="row search-bar">
@@ -66,7 +69,7 @@ export default class RoundsApp extends React.Component<{}, State> {
     })
   }
 
-  async componentDidMount() {
+  async componentDidMount(): Promise<void> {
     const service = new RoundService();
     const roundList = await service.getRoundList();
     this.setState({
