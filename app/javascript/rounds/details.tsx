@@ -23,7 +23,7 @@ export default class RoundDetails extends React.Component<Props> {
           <li>Max score: {round.max_score}</li>
         </ul>
 
-        <RoundDistanceTable roundDistances={round.round_distances} />
+        <RoundDistanceTable round={round} />
       </div>
     );
   }

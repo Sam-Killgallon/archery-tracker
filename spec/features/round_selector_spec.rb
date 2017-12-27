@@ -39,9 +39,6 @@ RSpec.feature 'Round selector', js: true do
       expect(page).to have_css('li', text: 'Total arrows: 60')
       expect(page).to have_css('li', text: 'Max score: 600')
 
-      # It should not have a table, as it only has one distance
-      expect(page).not_to have_css('.distances-table')
-
       find('a', text: 'Albion').click
 
       # It should have an overview of the selected round

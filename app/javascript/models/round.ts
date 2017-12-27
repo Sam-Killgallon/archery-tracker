@@ -21,8 +21,12 @@ export default class Round {
     return this.indoor ? 'Indoor' : 'Outdoor';
   }
 
+  distanceUnits(): string {
+   return this.metric ? 'm' : 'y';
+  }
+
   formattedDistances(): string {
-    const unit = this.metric ? 'm' : 'y';
+    const unit = this.distanceUnits();
     const distances = this.round_distances.sort().map(roundDistance => {
       return `${roundDistance.distance}${unit}`;
     });

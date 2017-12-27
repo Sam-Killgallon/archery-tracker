@@ -1,50 +1,38 @@
 import * as React from 'react';
-import RoundDistance from 'models/round_distance';
+import Round from 'models/round';
 
 interface Props {
-  roundDistances: RoundDistance[];
+  round: Round;
 }
 
 export default class RoundDistanceTable extends React.Component<Props> {
   render(): JSX.Element {
-    const roundDistances = this.props.roundDistances;
+    const round = this.props.round;
+    const roundDistances = round.round_distances;
 
-    if (roundDistances.length <= 1) { return <div></div> }
-
-    const headers = roundDistances.map(roundDistance => {
-     return <th key={roundDistance.id}>{roundDistance.distance}</th>
-    })
-    const arrowsPerEnd = roundDistances.map(roundDistance => {
-     return <td key={roundDistance.id}>{roundDistance.arrows_per_end}</td>
-    })
-    const ends = roundDistances.map(roundDistance => {
-     return <td key={roundDistance.id}>{roundDistance.ends}</td>
-    })
-    const totalArrows = roundDistances.map(roundDistance => {
-     return <td key={roundDistance.id}>{roundDistance.total_arrows}</td>
+    const rows = roundDistances.map(roundDistance => {
+      return (
+        <tr key={roundDistance.id}>
+          <th>{roundDistance.distance}</th>
+          <td>{roundDistance.arrows_per_end}</td>
+          <td>{roundDistance.ends}</td>
+          <td>{roundDistance.total_arrows}</td>
+        </tr>
+      )
     })
 
     return (
-      <table className="table distances-table">
+      <table className="table table-hover distances-table">
         <thead>
           <tr>
-            <th></th>
-            {headers}
+            <th>Distance ({round.distanceUnits()})</th>
+            <th>Arrows per end</th>
+            <th>Ends</th>
+            <th>Total arrows</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <th className="col-sm-3">Arrows per end</th>
-            {arrowsPerEnd}
-          </tr>
-          <tr>
-            <th className="col-sm-3">Ends</th>
-            {ends}
-          </tr>
-          <tr>
-            <th className="col-sm-3">Total arrows</th>
-            {totalArrows}
-          </tr>
+          {rows}
         </tbody>
       </table>
     )
