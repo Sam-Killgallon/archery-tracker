@@ -11,10 +11,18 @@ Setup
 Tests
 -----
 
-Tests are set up to run using rspec and headless chrome.  
-* Ensure at least chrome 59 is installed.  
-* Install [chromedriver](https://sites.google.com/a/chromium.org/chromedriver/).  
+Tests are set up to run using rspec and headless chrome.
+* Ensure at least chrome 59 is installed.
+* Install [chromedriver](https://sites.google.com/a/chromium.org/chromedriver/).
 
-Run tests with:  
+Run tests with:
 
     bundle exec rspec
+
+Todo
+-----
+
+* Add user accounts to submit scores
+* Generate pdf score sheets for printing
+* Add page for bow tuning
+* Add support for bows other than recurve
