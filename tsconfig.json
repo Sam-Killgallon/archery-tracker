@@ -9,13 +9,14 @@
     "sourceMap": true,
     "target": "es5",
     "jsx":"react",
-    "baseUrl": "app/javascript",
-    "strictNullChecks": true
+    "baseUrl": ".",
+    "strict": true,
+    "paths": {
+      "*": [
+        "app/javascript/*",
+        "node_modules/*"
+      ]
+    }
   },
-  "exclude": [
-    "**/*.spec.ts",
-    "node_modules",
-    "public"
-  ],
   "compileOnSave": false
 }

@@ -1,3 +1,6 @@
-<%= javascript_pack_tag 'rounds_viewer' %>
+<% content_for(:title) { 'Archery round viewer - Filterable overview of different archery rounds' } %>
+<% content_for(:description) { 'View different Archery rounds and their formats' } %>
 
-<div id="root"></div>
+<%= javascript_pack_tag 'rounds_viewer_index' %>
+
+<div id="root" class="container"></div>

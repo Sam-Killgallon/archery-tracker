@@ -1,24 +1,36 @@
-// "bootstrap-sprockets" must be imported before "bootstrap" and "bootstrap/variables"
-@import "bootstrap-sprockets";
+
+// $nav-active-background-color: #007bff;
+$font-size-base: 0.875rem;
+$nav-text-color: #337ab7;
+$nav-hover-background-color: #e9ecef;
+
 @import "bootstrap";
 
-$clickable-text-color: #337ab7;
-$clickable-text-hover-color: #eeeeee;
+.full-page-scrollable {
+  height: 90vh;
+  overflow-y: auto;
+}
 
-.list-group-item {
+.list-group-item-large {
+  @extend .list-group-item;
+
   font-size: xx-large;
   border: none;
-  color: $clickable-text-color;
-  &:hover {
-    background-color: $clickable-text-hover-color
+  color: $nav-text-color;
+
+  &:focus {
+    outline: none;
+  }
+
+  &:hover:not(.active) {
+    background-color: $nav-hover-background-color;
   }
 }
 
 .search-bar {
-  margin: 10px;
+  margin: 1rem 0;
 }
 
-// Override bootstrap form style to line up checkboxes
-.radio + .radio, .checkbox + .checkbox {
-  margin-top: 10px;
+.table-equal-width tr th {
+  width: 25%;
 }
