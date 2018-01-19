@@ -46,12 +46,13 @@ GEM
       activerecord (>= 3.2, < 6.0)
       rake (>= 10.4, < 13.0)
     arel (8.0.0)
-    autoprefixer-rails (7.2.3)
+    autoprefixer-rails (7.2.5)
       execjs
     bindex (0.5.0)
-    bootstrap-sass (3.3.7)
-      autoprefixer-rails (>= 5.2.1)
-      sass (>= 3.3.4)
+    bootstrap (4.0.0)
+      autoprefixer-rails (>= 6.0.3)
+      popper_js (>= 1.12.9, < 2)
+      sass (>= 3.5.2)
     builder (3.2.3)
     byebug (9.1.0)
     capistrano (3.10.1)
@@ -130,6 +131,7 @@ GEM
     notiffany (0.1.1)
       nenv (~> 0.1)
       shellany (~> 0.0)
+    popper_js (1.12.9)
     pry (0.11.3)
       coderay (~> 1.1.0)
       method_source (~> 0.9.0)
@@ -248,7 +250,7 @@ PLATFORMS
 
 DEPENDENCIES
   annotate
-  bootstrap-sass
+  bootstrap
   byebug
   capistrano
   capistrano-bundler
@@ -272,4 +274,4 @@ DEPENDENCIES
   webpacker
 
 BUNDLED WITH
-   1.16.0
+   1.16.1

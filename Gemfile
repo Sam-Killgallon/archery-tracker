@@ -8,7 +8,7 @@ end
 gem 'rails'
 gem 'mysql2'
 gem 'puma'
-gem 'bootstrap-sass'
+gem 'bootstrap'
 gem 'sass-rails'
 gem 'uglifier'
 gem 'webpacker'

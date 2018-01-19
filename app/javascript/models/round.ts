@@ -1,16 +1,25 @@
 import RoundDistance from 'models/round_distance';
 
-export default class Round {
+export interface RoundAttributes {
   id: number;
   name: string;
-  metric: boolean;
   indoor: boolean;
   total_arrows: number;
   max_score: number;
+  metric: boolean;
   round_distances: RoundDistance[];
+}
+export default class Round implements RoundAttributes {
+  public id: number;
+  public name: string;
+  public indoor: boolean;
+  public total_arrows: number;
+  public max_score: number;
+  public metric: boolean;
+  public round_distances: RoundDistance[];
 
-  constructor(round) {
-    Object.keys(round).forEach(attribute => this[attribute] = round[attribute]);
+  constructor(round_json: RoundAttributes) {
+    Object.assign(this, round_json);
   }
 
   type(): string {
