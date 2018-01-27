@@ -20,3 +20,5 @@
 /public/packs*
 /node_modules
 
+# Ignore generated pdfs
+/score_sheets

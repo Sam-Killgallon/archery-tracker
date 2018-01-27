@@ -7,6 +7,7 @@ end
 
 gem 'rails'
 gem 'mysql2'
+gem 'prawn-table'
 gem 'puma'
 gem 'bootstrap'
 gem 'sass-rails'
