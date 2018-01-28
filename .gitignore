@@ -21,4 +21,4 @@
 /node_modules
 
 # Ignore generated pdfs
-/score_sheets
+/public/system/score_sheets

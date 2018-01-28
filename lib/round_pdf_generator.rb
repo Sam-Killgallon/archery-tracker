@@ -1,10 +1,15 @@
 class RoundPdfGenerator
+  def self.storage_path
+    'public/system/score_sheets'.freeze
+  end
+
   def initialize(round)
     @round = round
   end
 
   def save
-    Prawn::Document.generate(filename, page_layout: :landscape, size: 'A4') do |pdf|
+    file_path = File.join(self.class.storage_path, filename)
+    Prawn::Document.generate(file_path, page_layout: :landscape, size: 'A4') do |pdf|
       pdf.table(score_table, width: pdf.bounds.width, cell_style: { height: 30 }) do |t|
         t.before_rendering_page do |page|
           # Outline the mid end total boxes
@@ -34,7 +39,7 @@ class RoundPdfGenerator
   attr_reader :round
 
   def filename
-    "score_sheets/#{round.name}.pdf"
+    "#{round.name}.pdf"
   end
 
   def score_table

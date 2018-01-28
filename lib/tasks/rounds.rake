@@ -2,7 +2,8 @@ namespace :rounds do
   desc 'Create PDFs for all rounds'
 
   task pdf: :environment do
-    FileUtils.mkdir('score_sheets') unless File.exist?('score_sheets')
+    storage_path = RoundPdfGenerator.storage_path
+    FileUtils.mkdir_p(storage_path) unless File.exist?(storage_path)
 
     Round.all.each do |round|
       puts "Generating pdf for #{round.name}"
