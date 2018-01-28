@@ -17,7 +17,17 @@ class RoundPdfGenerator
   attr_reader :round
 
   def pdf
-    Prawn::Document.new(page_layout: :landscape, size: 'A4').tap do |pdf|
+    Prawn::Document.new(page_layout: :portrait, size: 'A4').tap do |pdf|
+      pdf.bounding_box([0, pdf.bounds.top], width: pdf.bounds.width - 200) do
+        pdf.font_size(25) { pdf.text round.name, align: :center }
+      end
+
+      pdf.bounding_box([pdf.bounds.width - 200, pdf.bounds.top], width: 200) do
+        pdf.text 'Name: _______________________', leading: 8
+        pdf.text 'Club:   _______________________', leading: 8
+        pdf.text 'Date:   _______________________', leading: 8
+      end
+
       pdf.table(score_table, width: pdf.bounds.width, cell_style: { height: 30 }) do |t|
         border_width = 2
 
@@ -34,6 +44,10 @@ class RoundPdfGenerator
         t.column(16).border_right_width              = border_width
         t.row(0).column(13..16).border_top_width     = border_width
         t.row(-1).column(13..16).border_bottom_width = border_width
+      end
+
+      pdf.transparent(0.5) do
+        pdf.text_box 'https://archery-tracker.co.uk', at: pdf.bounds.absolute_bottom_left
       end
     end
   end
