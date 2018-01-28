@@ -42,4 +42,8 @@ export default class Round implements RoundAttributes {
 
     return distances.join(', ');
   }
+
+  scoreSheetPath(): string {
+    return `/system/score_sheets/${this.name}.pdf`
+  }
 }

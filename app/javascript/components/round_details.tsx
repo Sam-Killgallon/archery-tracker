@@ -30,6 +30,17 @@ export default class RoundDetails extends React.Component<Props, State> {
           <li>Max score: {round.max_score}</li>
         </ul>
 
+        <div className="text-center">
+          Scoresheet:
+          &nbsp;
+          <a href={round.scoreSheetPath()} target="_blank">View</a>
+          &nbsp;
+          |
+          &nbsp;
+          <a href={round.scoreSheetPath()} download>Download</a>
+        </div>
+
+
         <table className="table table-equal-width">
           <thead>
             <tr>
