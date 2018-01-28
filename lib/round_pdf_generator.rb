@@ -9,34 +9,34 @@ class RoundPdfGenerator
 
   def save
     file_path = File.join(self.class.storage_path, filename)
-    Prawn::Document.generate(file_path, page_layout: :landscape, size: 'A4') do |pdf|
-      pdf.table(score_table, width: pdf.bounds.width, cell_style: { height: 30 }) do |t|
-        t.before_rendering_page do |page|
-          # Outline the mid end total boxes
-          page.column(6).border_top_width = 2
-          page.column(6).border_bottom_width = 2
-          page.column(6).border_left_width = 2
-          page.column(6).border_right_width = 2
-
-          # Outline the total boxes on the right of the page
-          page.column(13).border_left_width = 2
-          page.column(16).border_right_width = 2
-          page.row(0).column(13).border_top_width = 2
-          page.row(0).column(14).border_top_width = 2
-          page.row(0).column(15).border_top_width = 2
-          page.row(0).column(16).border_top_width = 2
-          page.row(-1).column(13).border_bottom_width = 2
-          page.row(-1).column(14).border_bottom_width = 2
-          page.row(-1).column(15).border_bottom_width = 2
-          page.row(-1).column(16).border_bottom_width = 2
-        end
-      end
-    end
+    pdf.render_file(file_path)
   end
 
   private
 
   attr_reader :round
+
+  def pdf
+    Prawn::Document.new(page_layout: :landscape, size: 'A4').tap do |pdf|
+      pdf.table(score_table, width: pdf.bounds.width, cell_style: { height: 30 }) do |t|
+        border_width = 2
+
+        # Outline the halfway total box
+        t.column(6).tap do |col|
+          col.border_top_width    = border_width
+          col.border_bottom_width = border_width
+          col.border_left_width   = border_width
+          col.border_right_width  = border_width
+        end
+
+        # Outline the total boxes on the right of the table
+        t.column(13).border_left_width               = border_width
+        t.column(16).border_right_width              = border_width
+        t.row(0).column(13..16).border_top_width     = border_width
+        t.row(-1).column(13..16).border_bottom_width = border_width
+      end
+    end
+  end
 
   def filename
     "#{round.name}.pdf"
