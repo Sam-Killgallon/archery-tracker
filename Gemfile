@@ -7,6 +7,7 @@ end
 
 gem 'rails'
 gem 'mysql2'
+gem 'prawn'
 gem 'prawn-table'
 gem 'puma'
 gem 'bootstrap'
@@ -23,6 +24,7 @@ group :development, :test do
   gem 'capybara'
   gem 'selenium-webdriver'
   gem 'database_cleaner'
+  gem 'pdf-inspector', require: "pdf/inspector"
 end
 
 group :development do

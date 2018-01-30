@@ -12,43 +12,58 @@ class RoundPdfGenerator
     pdf.render_file(file_path)
   end
 
+  def render
+    pdf.render
+  end
+
   private
 
   attr_reader :round
 
   def pdf
-    Prawn::Document.new(page_layout: :portrait, size: 'A4').tap do |pdf|
-      pdf.bounding_box([0, pdf.bounds.top], width: pdf.bounds.width - 200) do
-        pdf.font_size(25) { pdf.text round.name, align: :center }
+    return @pdf if defined?(@pdf)
+    @pdf = Prawn::Document.new(page_layout: :portrait, size: 'A4').tap do |document|
+      draw_headers(document)
+      draw_table(document)
+      draw_footer(document)
+    end
+  end
+
+  def draw_headers(document)
+    document.bounding_box([0, document.bounds.top], width: document.bounds.width - 200) do
+      document.font_size(25) { document.text round.name, align: :center }
+    end
+
+    document.bounding_box([document.bounds.width - 200, document.bounds.top], width: 200) do
+      document.text 'Name: _______________________', leading: 8
+      document.text 'Club:   _______________________', leading: 8
+      document.text 'Date:   _______________________', leading: 8
+    end
+  end
+
+  def draw_table(document)
+    document.table(score_table, width: document.bounds.width, cell_style: { height: 30 }) do |t|
+      border_width = 2
+
+      # Outline the halfway total box
+      t.column(6).tap do |col|
+        col.border_top_width    = border_width
+        col.border_bottom_width = border_width
+        col.border_left_width   = border_width
+        col.border_right_width  = border_width
       end
 
-      pdf.bounding_box([pdf.bounds.width - 200, pdf.bounds.top], width: 200) do
-        pdf.text 'Name: _______________________', leading: 8
-        pdf.text 'Club:   _______________________', leading: 8
-        pdf.text 'Date:   _______________________', leading: 8
-      end
+      # Outline the total boxes on the right of the table
+      t.column(13).border_left_width               = border_width
+      t.column(16).border_right_width              = border_width
+      t.row(0).column(13..16).border_top_width     = border_width
+      t.row(-1).column(13..16).border_bottom_width = border_width
+    end
+  end
 
-      pdf.table(score_table, width: pdf.bounds.width, cell_style: { height: 30 }) do |t|
-        border_width = 2
-
-        # Outline the halfway total box
-        t.column(6).tap do |col|
-          col.border_top_width    = border_width
-          col.border_bottom_width = border_width
-          col.border_left_width   = border_width
-          col.border_right_width  = border_width
-        end
-
-        # Outline the total boxes on the right of the table
-        t.column(13).border_left_width               = border_width
-        t.column(16).border_right_width              = border_width
-        t.row(0).column(13..16).border_top_width     = border_width
-        t.row(-1).column(13..16).border_bottom_width = border_width
-      end
-
-      pdf.transparent(0.5) do
-        pdf.text_box 'https://archery-tracker.co.uk', at: pdf.bounds.absolute_bottom_left
-      end
+  def draw_footer(document)
+    document.transparent(0.5) do
+      document.text_box 'https://archery-tracker.co.uk', at: document.bounds.absolute_bottom_left
     end
   end
 
@@ -62,20 +77,21 @@ class RoundPdfGenerator
     no_of_rows = round.total_arrows / 12
     no_of_rows.times do
       # TODO: Handle rounds that end on a half dozen, `divmod` should help here
-      table << [*half_dozen, '', *half_dozen, *totals_columns]
+      table << [*half_dozen, nil, *half_dozen, *totals_columns]
     end
 
-    table << [{ content: '', colspan: 13, borders: [] }, *totals_columns]
+    table << [{ content: nil, colspan: 13, borders: [] }, *totals_columns]
     table
   end
 
   def totals_columns
-    ['', '', '', '']
+    Array.new(4, nil)
   end
 
   def half_dozen
     no_of_cells = 2
-    Array.new(no_of_cells) { {content: '', colspan: (6 / no_of_cells) } }
+    # Array.new(no_of_cells) { {content: nil, colspan: (6 / no_of_cells) } }
+    Array.new(no_of_cells, content: nil, colspan: (6 / no_of_cells))
   end
 
   def headers
