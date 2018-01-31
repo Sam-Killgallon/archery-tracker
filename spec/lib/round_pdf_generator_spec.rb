@@ -6,7 +6,7 @@ RSpec.describe RoundPdfGenerator do
   let(:instance) { described_class.new(round) }
   let(:round) { double(:round, name: round_name, total_arrows: total_arrows) }
   let(:round_name) { 'My Awesome Round' }
-  let(:total_arrows) { 36 }
+  let(:total_arrows) { 60 }
 
   describe '#render' do
     subject { instance.render }
@@ -53,10 +53,9 @@ RSpec.describe RoundPdfGenerator do
         subject
       end
 
-      it 'has the correct number of rows' do
+      it 'has a row for each dozen' do
         # One row for each 12, plus the headers and the final count
-        number_of_rows = (total_arrows / 12) + 2
-        expect(table.row_length).to be(number_of_rows)
+        expect(table.row_length).to be(5 + 2)
       end
 
       it 'has the correct number of columns' do
@@ -86,7 +85,7 @@ RSpec.describe RoundPdfGenerator do
         end
       end
 
-      it 'has a shorter final row' do
+      it 'only shows cells for totals on the final row' do
         totals = table.row(-1).map(&:content)
         # A cell which spans multiple columns will have an empty string for
         # where it begins, followed by nils to represent the extra cells it
@@ -99,6 +98,32 @@ RSpec.describe RoundPdfGenerator do
           '',
           ''
         ])
+      end
+
+      # Support for rounds that end on half dozens
+      context 'when the total number of arrows is not divisable by 12' do
+        let(:total_arrows) { 30 }
+
+        it 'has a row for the final half dozen' do
+          # 2 Full rows + a half final row
+          scoring_rows = 3
+          expect(table.row_length).to be(scoring_rows + 2)
+        end
+
+        it 'has a partial final scoring row' do
+          totals = table.row(-2).map(&:content)
+          expect(totals).to eql([
+            '', nil, nil,
+            '', nil, nil,
+            '',
+            '',
+            *Array.new(5, nil),
+            '',
+            '',
+            '',
+            ''
+          ])
+        end
       end
     end
   end

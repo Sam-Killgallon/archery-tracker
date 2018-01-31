@@ -74,10 +74,14 @@ class RoundPdfGenerator
   def score_table
     table = [headers]
     # Each row contains a dozen arrows
-    no_of_rows = round.total_arrows / 12
-    no_of_rows.times do
-      # TODO: Handle rounds that end on a half dozen, `divmod` should help here
+    no_of_full_rows, remainder = round.total_arrows.divmod(12)
+    no_of_full_rows.times do
       table << [*half_dozen, nil, *half_dozen, *totals_columns]
+    end
+
+    # Handle rounds that don't finish on an exact dozen, ie Bray I
+    if remainder != 0
+      table << [*half_dozen, nil, { content: nil, colspan: 6, borders: []}, *totals_columns]
     end
 
     table << [{ content: nil, colspan: 13, borders: [] }, *totals_columns]
@@ -90,7 +94,6 @@ class RoundPdfGenerator
 
   def half_dozen
     no_of_cells = 2
-    # Array.new(no_of_cells) { {content: nil, colspan: (6 / no_of_cells) } }
     Array.new(no_of_cells, content: nil, colspan: (6 / no_of_cells))
   end
 
