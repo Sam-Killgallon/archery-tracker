@@ -4,6 +4,8 @@ lock '3.10.1'
 set :application, 'archery'
 set :repo_url, 'git@github.com:Sam-Killgallon/archery_tracker.git'
 set :user, 'deploy'
+set ssh_options: { forward_agent: true }
+
 
 append :linked_dirs, 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'public/system'
 
