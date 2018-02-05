@@ -1,7 +1,7 @@
 export default interface RoundDistance {
-  id: number;
-  distance: number;
-  ends: number;
-  arrows_per_end: number;
-  total_arrows: number;
+  readonly id: number;
+  readonly distance: number;
+  readonly ends: number;
+  readonly arrows_per_end: number;
+  readonly total_arrows: number;
 }

@@ -10,16 +10,22 @@ export interface RoundAttributes {
   round_distances: RoundDistance[];
 }
 export default class Round implements RoundAttributes {
-  public id: number;
-  public name: string;
-  public indoor: boolean;
-  public total_arrows: number;
-  public max_score: number;
-  public metric: boolean;
-  public round_distances: RoundDistance[];
+  public readonly id: number;
+  public readonly name: string;
+  public readonly indoor: boolean;
+  public readonly total_arrows: number;
+  public readonly max_score: number;
+  public readonly metric: boolean;
+  public readonly round_distances: RoundDistance[];
 
-  constructor(round_json: RoundAttributes) {
-    Object.assign(this, round_json);
+  constructor(round_attrs: RoundAttributes) {
+    this.id              = round_attrs.id;
+    this.name            = round_attrs.name;
+    this.indoor          = round_attrs.indoor;
+    this.total_arrows    = round_attrs.total_arrows;
+    this.max_score       = round_attrs.max_score;
+    this.metric          = round_attrs.metric;
+    this.round_distances = round_attrs.round_distances;
   }
 
   type(): string {
