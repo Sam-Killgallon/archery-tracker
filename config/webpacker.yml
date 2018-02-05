@@ -6,21 +6,13 @@ default: &default
   public_output_path: packs
 
   extensions:
-    - .coffee
-    - .erb
     - .js
     - .jsx
     - .ts
     - .tsx
-    - .vue
     - .sass
     - .scss
     - .css
-    - .png
-    - .svg
-    - .gif
-    - .jpeg
-    - .jpg
 
 development:
   <<: *default
