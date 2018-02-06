@@ -1,5 +1,11 @@
-<% content_for(:title) { 'Archery round viewer - Filterable overview of different archery rounds' } %>
-<% content_for(:description) { 'View different Archery rounds and their formats' } %>
+<% content_for(:title) { 'Target archery rounds | Guide to metric and imperial (GNAS) rounds' } %>
+<%
+  content_for(:description) do
+    'Guide to the various different archery rounds, both metric (WA) and imperial (GNAS). ' \
+    'Filter by round type and location (indoor / outdoor), then view the distances, number of ' \
+    'arrows and max score. We also provide downloadable score sheets for all rounds.'
+  end
+%>
 
 <%= javascript_pack_tag 'rounds_viewer_index' %>
 
