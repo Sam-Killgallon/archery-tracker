@@ -12,3 +12,5 @@
 //
 //= require rails-ujs
 //= require_tree .
+
+Raven.config('https://2d097d4057aa477d8442f8bd71a07ff9@sentry.io/300651').install()
