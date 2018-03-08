@@ -12,6 +12,7 @@ gem 'prawn-table'
 gem 'puma'
 gem 'bootstrap'
 gem 'sass-rails'
+gem 'sentry-raven'
 gem 'uglifier'
 gem 'webpacker'
 
