@@ -26,6 +26,7 @@ group :development, :test do
   gem 'selenium-webdriver'
   gem 'database_cleaner'
   gem 'pdf-inspector', require: "pdf/inspector"
+  gem 'chromedriver-helper'
 end
 
 group :development do
