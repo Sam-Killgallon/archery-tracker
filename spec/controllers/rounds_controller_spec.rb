@@ -11,8 +11,7 @@ RSpec.describe RoundsController do
 
     context 'as json' do
       it 'returns all rounds as json' do
-        rounds = double(:rounds)
-        expect(Round).to receive(:all).and_return(rounds)
+        rounds = 0.upto(3).map { Round.create! }
 
         get :index, format: :json
         expect(response.body).to eql(rounds.to_json)
