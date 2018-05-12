@@ -12,11 +12,10 @@
 default: &default
   adapter: mysql2
   encoding: utf8
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  username: root
-  password: root
-  host: 127.0.0.1
-  socket: /tmp/mysql.sock
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS", 5) %>
+  username: <%= ENV.fetch('ARCHERY_DATABASE_USERNAME', 'root') %>
+  password: <%= ENV.fetch('ARCHERY_DATABASE_PASSWORD', false) %>
+  host: <%= ENV.fetch('ARCHERY_DATABASE_HOST', '127.0.0.1') %>
 
 development:
   <<: *default
@@ -28,7 +27,6 @@ development:
 test:
   <<: *default
   database: archery_test
-  socket: <%= ENV['MYSQL_SOCKET'] %>
 
 # As with config/secrets.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
@@ -52,6 +50,3 @@ test:
 production:
   <<: *default
   database: archery_production
-  username: archery
-  password: <%= ENV['ARCHERY_DATABASE_PASSWORD'] %>
-  socket: <%= ENV['MYSQL_SOCKET'] %>

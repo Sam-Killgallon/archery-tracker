@@ -1,0 +1,22 @@
+version: '3'
+
+volumes:
+  mysql_data: {}
+
+services:
+  web:
+    build: .
+    image: samkillgallon/archery-tracker:latest
+    ports:
+      - '3000:80'
+    volumes:
+      - .:/app
+    depends_on:
+      - db
+    env_file: .env.development
+
+  db:
+    image: mysql:5.7
+    volumes:
+      - mysql_data:/var/lib/mysql
+    env_file: .env.development
