@@ -3,7 +3,7 @@ jobs:
   build:
     docker:
       # specify the version you desire here
-      - image: circleci/ruby:2.5-node-browsers
+      - image: circleci/ruby:2.6-node-browsers
         environment:
           RAILS_ENV: test
           ARCHERY_DATABASE_PASSWORD: root
@@ -59,7 +59,7 @@ jobs:
 #   deploy:
 #     docker:
 #       # Only need ruby to run capistrano
-#       - image: circleci/ruby:2.5
+#       - image: circleci/ruby:2.6
 
 #     steps:
 #       - checkout
