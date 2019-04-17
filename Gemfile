@@ -5,16 +5,16 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-gem 'rails'
-gem 'mysql2', '~>0.4.10' # 0.5.0 only works with rails 5.2+
-gem 'prawn'
-gem 'prawn-table'
-gem 'puma'
-gem 'bootstrap'
-gem 'sass-rails'
-gem 'sentry-raven'
-gem 'uglifier'
-gem 'webpacker'
+gem 'rails', '~> 5.1.5'
+gem 'mysql2', '~> 0.4.10' # 0.5.0 only works with rails 5.2+
+gem 'prawn', '~> 2.2.2'
+gem 'prawn-table', '~> 0.2.0'
+gem 'puma', '~> 3.11.4'
+gem 'bootstrap', '~> 4.1.1'
+gem 'sass-rails', '~> 5.0.7'
+gem 'sentry-raven', '~> 2.7.3'
+gem 'uglifier', '~> 4.1.10'
+gem 'webpacker', '~> 3.4.1'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

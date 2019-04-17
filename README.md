@@ -2,29 +2,16 @@
 
 Source code for archery tracker app
 
-Setup
-------
+## Setup
 
-    bundle install
-    yarn install
-    bundle exec rails db:setup
+    docker-compose build
+    # Setup the database
+    docker-compose run --rm web rails db:setup
+    # Run tests to ensure everything is working
+    docker-compose run --rm web rspec
+    # Generate the pdfs score sheets
+    docker-compose run --rm rails rounds:pdf
+    docker-compose up
 
-
-Tests
------
-
-Tests are set up to run using rspec and headless chrome.
-* Ensure at least chrome 59 is installed.
-* Install [chromedriver](https://sites.google.com/a/chromium.org/chromedriver/).
-
-Run tests with:
-
-    bundle exec rspec
-
-Todo
------
-
-* Add user accounts to submit scores
-* Generate pdf score sheets for printing
-* Add page for bow tuning
-* Add support for bows other than recurve
+Visit `localhost:3000`
+Run `docker-compose down` to shut down the app

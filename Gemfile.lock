@@ -280,7 +280,7 @@ PLATFORMS
 
 DEPENDENCIES
   annotate
-  bootstrap
+  bootstrap (~> 4.1.1)
   byebug
   capistrano
   capistrano-bundler
@@ -293,19 +293,19 @@ DEPENDENCIES
   listen
   mysql2 (~> 0.4.10)
   pdf-inspector
-  prawn
-  prawn-table
+  prawn (~> 2.2.2)
+  prawn-table (~> 0.2.0)
   pry-rails
-  puma
-  rails
+  puma (~> 3.11.4)
+  rails (~> 5.1.5)
   rails-controller-testing
   rspec-rails
-  sass-rails
+  sass-rails (~> 5.0.7)
   selenium-webdriver
-  sentry-raven
-  uglifier
+  sentry-raven (~> 2.7.3)
+  uglifier (~> 4.1.10)
   web-console
-  webpacker
+  webpacker (~> 3.4.1)
 
 BUNDLED WITH
-   1.16.1
+   1.17.3
