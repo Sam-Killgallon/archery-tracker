@@ -6,13 +6,13 @@ git_source(:github) do |repo_name|
 end
 
 gem 'rails', '~> 5.2.3'
-gem 'mysql2', '~> 0.4.10' # 0.5.0 only works with rails 5.2+
+gem 'mysql2', '~> 0.5.2'
 gem 'prawn', '~> 2.2.2'
 gem 'prawn-table', '~> 0.2.0'
-gem 'puma', '~> 3.11.4'
-gem 'bootstrap', '~> 4.1.1'
+gem 'puma', '~> 3.12.1'
+gem 'bootstrap', '~> 4.3.1'
 gem 'sass-rails', '~> 5.0.7'
-gem 'sentry-raven', '~> 2.7.3'
+gem 'sentry-raven', '~> 2.9.0'
 gem 'uglifier', '~> 4.1.10'
 gem 'webpacker', '~> 3.4.1'
 gem 'bootsnap', '~> 1.4.3', require: false
