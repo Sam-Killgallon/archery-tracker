@@ -1,7 +1,7 @@
 version: '3'
 
 volumes:
-  mysql_data: {}
+  postgres_data:
 
 services:
   web:
@@ -12,20 +12,19 @@ services:
     image: samkillgallon/archery-tracker
     environment:
       WEBPACKER_DEV_SERVER_HOST: webpack_dev_server
+      ARCHERY_DATABASE_HOST: 'postgres'
     ports:
-      - '3000:80'
+      - '3000:3000'
     volumes:
       - .:/app:cached
     depends_on:
-      - db
+      - postgres
       - webpack_dev_server
 
-  db:
-    image: mysql:5.7
+  postgres:
+    image: postgres:11.2
     volumes:
-      - mysql_data:/var/lib/mysql:cached
-    environment:
-      MYSQL_ROOT_PASSWORD: 'root'
+      - postgres_data:/var/lib/postgesql/data:cached
 
   webpack_dev_server:
     command: ./bin/webpack-dev-server

@@ -6,7 +6,7 @@ git_source(:github) do |repo_name|
 end
 
 gem 'rails', '~> 5.2.3'
-gem 'mysql2', '~> 0.5.2'
+gem 'pg', '>= 0.18', '< 2.0'
 gem 'prawn', '~> 2.2.2'
 gem 'prawn-table', '~> 0.2.0'
 gem 'puma', '~> 3.12.1'
@@ -15,9 +15,9 @@ gem 'sass-rails', '~> 5.0.7'
 gem 'sentry-raven', '~> 2.9.0'
 gem 'uglifier', '~> 4.1.10'
 gem 'webpacker', '~> 3.4.1'
-gem 'bootsnap', '~> 1.4.3', require: false
 
 group :development, :test do
+  gem 'bootsnap', '~> 1.4.3', require: false
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'pry-rails'

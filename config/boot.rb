@@ -1,4 +1,7 @@
 ENV['BUNDLE_GEMFILE'] ||= File.expand_path('../Gemfile', __dir__)
 
 require 'bundler/setup' # Set up gems listed in the Gemfile.
-require 'bootsnap/setup' # Speed up boot time by caching expensive operations.
+# Speed up boot time by caching expensive operations.
+# Disabled on google app engine where the filesystem is in memory, and does not persist between
+# restarts
+require 'bootsnap/setup' unless ENV['GAE_APPLICATION']

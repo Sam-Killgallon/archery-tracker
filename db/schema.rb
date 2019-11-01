@@ -12,7 +12,10 @@
 
 ActiveRecord::Schema.define(version: 20170801215156) do
 
-  create_table "round_distances", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "round_distances", force: :cascade do |t|
     t.integer "distance"
     t.integer "ends"
     t.integer "arrows_per_end"
@@ -23,7 +26,7 @@ ActiveRecord::Schema.define(version: 20170801215156) do
     t.index ["round_id"], name: "index_round_distances_on_round_id"
   end
 
-  create_table "rounds", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "rounds", force: :cascade do |t|
     t.string "name"
     t.boolean "indoor"
     t.boolean "metric"

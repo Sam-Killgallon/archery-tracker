@@ -11,6 +11,8 @@ RUN curl -sL https://deb.nodesource.com/setup_10.x | bash - && \
       yarn \
       # For building native extensions
       build-essential \
+      # For the database
+      postgresql-client \
       # For chromedriver, which gets installed by the 'chromedriver-helper' gem
       libnss3 \
       # For brower tests

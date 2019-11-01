@@ -1,10 +1,11 @@
 default: &default
-  adapter: mysql2
-  encoding: utf8
+  adapter: postgresql
+  encoding: unicode
   pool: <%= ENV.fetch("RAILS_MAX_THREADS", 5) %>
-  host: <%= ENV.fetch('ARCHERY_DATABASE_HOST', 'db') %>
-  username: <%= ENV.fetch('ARCHERY_DATABASE_USERNAME', 'root') %>
-  password: <%= ENV.fetch('ARCHERY_DATABASE_PASSWORD', 'root') %>
+  host: <%= ENV.fetch('ARCHERY_DATABASE_HOST', nil) %>
+  socket: <%= ENV.fetch('ARCHERY_DATABASE_SOCKET', nil) %>
+  username: <%= ENV.fetch('ARCHERY_DATABASE_USERNAME', 'postgres') %>
+  password: <%= ENV.fetch('ARCHERY_DATABASE_PASSWORD', nil) %>
 
 development:
   <<: *default
